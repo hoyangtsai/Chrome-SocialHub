@@ -1,0 +1,10 @@
+{
+   "appDesc": {
+      "description": "App description.",
+      "message": "Facebook standalone popup window app"
+   },
+   "appName": {
+      "description": "App name.",
+      "message": "Facebook"
+   }
+}

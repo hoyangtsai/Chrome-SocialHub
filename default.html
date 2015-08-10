@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Facebook</title>
+  <link rel="stylesheet" href="css/mdl/material.min.css">
+  <script src="css/mdl/material.min.js"></script>
+  <link rel="stylesheet" href="css/icon.css">
+  <link rel="stylesheet" href="css/default.css">
+</head>
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title" id="layout-title">Facebook</span>
+      <div class="mdl-layout-spacer"></div>
+      <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav> -->
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Facebook</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" id="switch" data-mode="desktop">Mobile</a>
+      <!-- <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a> -->
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <webview id="the_webview"></webview>
+  </main>
+</div>
+
+
+<script type="text/javascript" src="launch.js"></script>
+</body>
+</html>
