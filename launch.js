@@ -2,6 +2,8 @@ var App = {
   webview: null,
   viewSwitch: null,
   layoutTitle: null,
+  gotoFacebook: null,
+  gotoInstagram: null,
 
   init: function() {
     this.webview = document.getElementById('the_webview');
@@ -22,11 +24,17 @@ var App = {
 
     window.addEventListener('keydown', this.keydownHandler);
 
-    this.viewSwitch = document.getElementById('switch');
-    this.viewSwitch.addEventListener('click', this.handleSwitchView);
+    // this.viewSwitch = document.getElementById('switch');
+    // this.viewSwitch.addEventListener('click', this.handleSwitchView);
 
     this.layoutTitle = document.getElementById('layout-title');
-    this.layoutTitle.addEventListener('click', this.handleLayoutTitle);
+    // this.layoutTitle.addEventListener('click', this.handleLayoutTitle);
+
+    this.gotoFacebook = document.getElementById('goto-facebook');
+    this.gotoFacebook.addEventListener('click', this.handleGoto);
+
+    this.gotoInstagram = document.getElementById('goto-instagram');
+    this.gotoInstagram.addEventListener('click', this.handleGoto);
   },
 
   keydownHandler: function(event) {
@@ -62,6 +70,13 @@ var App = {
     } else if (App.viewSwitch.dataset.mode == 'mobile') {
       App.webview.src = 'https://m.facebook.com/';
     }
+  },
+
+  handleGoto: function(event) {
+    event.preventDefault();
+    var anchor = event.target;
+    App.layoutTitle.innerHTML = anchor.innerHTML;
+    App.webview.src = anchor.href;
   }
 
 };
