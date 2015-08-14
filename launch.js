@@ -1,6 +1,5 @@
 var App = {
   webview: null,
-  viewSwitch: null,
   layoutTitle: null,
   gotoFacebook: null,
   gotoInstagram: null,
@@ -23,9 +22,6 @@ var App = {
     });
 
     window.addEventListener('keydown', this.keydownHandler);
-
-    // this.viewSwitch = document.getElementById('switch');
-    // this.viewSwitch.addEventListener('click', this.handleSwitchView);
 
     this.layoutTitle = document.getElementById('layout-title');
     // this.layoutTitle.addEventListener('click', this.handleLayoutTitle);
