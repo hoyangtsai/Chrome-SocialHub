@@ -74,7 +74,6 @@ var App = {
     App.layoutTitle.innerHTML = anchor.innerHTML;
     App.webview.src = anchor.href;
   }
-
 };
 
 window.addEventListener('load', App.init.bind(App));
