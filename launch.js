@@ -1,5 +1,7 @@
 var App = {
   webview: null,
+  layoutTitle: '',
+  navLinks: null,
 
   init: function() {
     this.webview = document.getElementById('the_webview');
@@ -17,15 +19,32 @@ var App = {
       }
     });
 
-    window.addEventListener('keydown', this.keydownHandler);
+    window.addEventListener('keydown', this._keydownHandler);
 
-    var navLinks = document.getElementsByClassName('mdl-navigation__link');
-    for (var i = 0; i < navLinks.length; i++) {
-      navLinks[i].addEventListener('click', this.handleGoto);
+    this.navLinks = document.getElementsByClassName('mdl-navigation__link');
+    for (var i = 0; i < this.navLinks.length; i++) {
+      this.navLinks[i].addEventListener('click', this._handleGoto);
     }
+
+    this.layoutTitle = document.getElementById('layout-title');
+    this.webview.addEventListener('loadstop', this._handleTitleChange);
   },
 
-  keydownHandler: function(event) {
+  _removeClass: function(el, className) {
+    if (el.classList)
+      return el.classList.remove(className);
+    else
+      return el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+  },
+
+  _addClass: function(el, className) {
+    if (el.classList)
+      return el.classList.add(className);
+    else
+      return el.className += ' ' + className;
+  },
+
+  _keydownHandler: function(event) {
     if (event.ctrlKey) {
       switch (event.keyCode) {
         case 81: // Ctrl+q
@@ -39,14 +58,20 @@ var App = {
     }
   },
 
-  handleGoto: function(event) {
+  _handleGoto: function(event) {
     event.preventDefault();
     var anchor = event.target;
-    App.layoutTitle.innerHTML = anchor.innerHTML;
+    for (var i = 0; i < App.navLinks.length; i++) {
+      App._removeClass(App.navLinks[i], 'active');
+    }
     App.webview.src = anchor.href;
-    return false;
-  }
+    App._addClass(anchor, 'active');
+  },
 
+  _handleTitleChange: function(event) {
+    var activeAnchor = document.getElementsByClassName('active');
+    App.layoutTitle.innerHTML = activeAnchor[0].innerHTML;
+  }
 };
 
 window.addEventListener('load', App.init.bind(App));
