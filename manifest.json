@@ -1,9 +1,10 @@
 {
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "manifest_version": 2,
   "default_locale": "en_US",
+  "short_name": "Social Hub",
   "permissions": [
     "notifications",
     "webview",
