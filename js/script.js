@@ -5,6 +5,7 @@ var App = {
   appHeader: null,
   appContent: null,
   appLayout: null,
+  wheelDelta: 0,
 
   init: function() {
     this.webview = document.getElementById('the_webview');
@@ -83,15 +84,19 @@ var App = {
   },
 
   _handleScrolling: function(event) {
-    if (event.wheelDelta < -1) {
+    App.wheelDelta += event.wheelDelta;
+    if (App.wheelDelta < -50) {
       App.appLayout.classList.add('layout-scrolldown');
       App.appHeader.classList.add('scrolldown');
       App.appContent.classList.add('scrolldown');
-    } else {
+      App.wheelDelta = 0;
+    } else if (App.wheelDelta > 50) {
       App.appLayout.classList.remove('layout-scrolldown');
       App.appHeader.classList.remove('scrolldown');
       App.appContent.classList.remove('scrolldown');
+      App.wheelDelta = 0;
     }
+    return;
   }
 };
 
