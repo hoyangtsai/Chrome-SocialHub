@@ -12,3 +12,20 @@ body {
   width: 100%;
   height: calc(100% - 64px);
 }
+
+.mdl-layout__content, .mdl-layout__header {
+  position: relative;
+  top: 0;
+}
+
+.app-transition {
+  transition: all 400ms;
+}
+
+.scrolldown {
+  top: -64px;
+}
+
+.layout-scrolldown {
+  height: calc(100% + 64px);
+}

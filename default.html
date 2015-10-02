@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Social Hub</title>
-  <link rel="stylesheet" href="css/icon.css">
   <link rel="stylesheet" href="mdl/material.min.css">
+  <!-- build:css default.css -->
+  <link rel="stylesheet" href="css/icon.css">
   <link rel="stylesheet" href="css/default.css">
+  <!-- endbuild -->
   <script src="mdl/material.min.js"></script>
-  <script src="launch.js"></script>
+  <!-- build:js js/script.js -->
+  <script src="js/script.js"></script>
+  <!-- endbuild -->
 </head>
 <body>
 
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header app-transition" id="app-layout">
+  <header class="mdl-layout__header app-transition" id="app-header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title" id="layout-title">Facebook</span>
-      <div class="mdl-layout-spacer"></div>
+      <span class="mdl-layout-title" id="app-title">Facebook</span>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -25,7 +28,8 @@
       <a class="mdl-navigation__link" href="https://instagram.com/accounts/login/">Instagram</a>
     </nav>
   </div>
-  <main class="mdl-layout__content">
+
+  <main class="mdl-layout__content app-transition" id="app-content">
     <webview id="the_webview"></webview>
   </main>
 </div>
