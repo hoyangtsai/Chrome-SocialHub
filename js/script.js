@@ -2,6 +2,9 @@ var App = {
   webview: null,
   layoutTitle: '',
   navLinks: null,
+  appHeader: null,
+  appContent: null,
+  appLayout: null,
 
   init: function() {
     this.webview = document.getElementById('the_webview');
@@ -26,8 +29,14 @@ var App = {
       this.navLinks[i].addEventListener('click', this._handleGoto);
     }
 
-    this.layoutTitle = document.getElementById('layout-title');
+    this.layoutTitle = document.getElementById('app-title');
     this.webview.addEventListener('loadstop', this._handleTitleChange);
+
+    this.appHeader = document.getElementById('app-header');
+    this.appContent = document.getElementById('app-content');
+    this.appLayout = document.getElementById('app-layout');
+
+    window.addEventListener('wheel', this._handleScrolling);
   },
 
   _removeClass: function(el, className) {
@@ -71,6 +80,18 @@ var App = {
   _handleTitleChange: function(event) {
     var activeAnchor = document.getElementsByClassName('active');
     App.layoutTitle.innerHTML = activeAnchor[0].innerHTML;
+  },
+
+  _handleScrolling: function(event) {
+    if (event.wheelDelta < -1) {
+      App.appLayout.classList.add('layout-scrolldown');
+      App.appHeader.classList.add('scrolldown');
+      App.appContent.classList.add('scrolldown');
+    } else {
+      App.appLayout.classList.remove('layout-scrolldown');
+      App.appHeader.classList.remove('scrolldown');
+      App.appContent.classList.remove('scrolldown');
+    }
   }
 };
 
