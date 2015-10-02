@@ -13,7 +13,7 @@ gulp.task('copy', function() {
 });
 
 gulp.task('copyMdl', function() {
-  return gulp.src(['mdl/*.min.css', 'mdl/*.min.js', 'css/font/*'])
+  return gulp.src(['mdl/*.min.css', 'mdl/*.min.js'])
     .pipe(gulp.dest('build/mdl'));
 });
 
@@ -22,11 +22,16 @@ gulp.task('copyLocales', function() {
     .pipe(gulp.dest('build/_locales'));
 });
 
-gulp.task('clean', function() {
-  return del(['build/*', 'build/*/*', 'build/_locales/*/*']);
+gulp.task('copyFont', function() {
+  return gulp.src('css/font/*')
+    .pipe(gulp.dest('build/css/font'));
 });
 
-gulp.task('usemin', ['clean', 'copy', 'copyMdl', 'copyLocales'], function() {
+gulp.task('clean', function() {
+  return del(['build/*/*/*', 'build/*/*', 'build/*']);
+});
+
+gulp.task('usemin', ['clean', 'copy', 'copyMdl', 'copyLocales', 'copyFont'], function() {
   return gulp.src('*.html')
     .pipe(usemin({
       css: [ minifyCss, rev ],
