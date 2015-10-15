@@ -17,7 +17,7 @@ var App = {
     });
 
     this.webview.addEventListener('permissionrequest', function(e) {
-      if (e.permission === 'fullscreen' || e.permission === 'download' ||
+      if (e.permission === 'download' || e.permission === 'fullscreen' ||
           e.permission === 'geolocation' || e.permission === 'filesystem') {
         e.request.allow();
       }
@@ -38,6 +38,16 @@ var App = {
     this.appLayout = document.getElementById('app-layout');
 
     window.addEventListener('wheel', this._handleScrolling);
+
+
+    this.webview.addEventListener('webkitfullscreenchange', function(e) {
+      if (document.webkitIsFullScreen) {
+        App.webview.classList.add('fullscreen');
+      } else {
+        App.webview.classList.remove('fullscreen');
+      }
+    });
+
   },
 
   _removeClass: function(el, className) {
