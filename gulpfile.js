@@ -1,10 +1,5 @@
-'use strict';
 var gulp = require('gulp');
-var usemin = require('gulp-usemin');
-var uglify = require('gulp-uglify');
-var minifyHtml = require('gulp-minify-html');
-var minifyCss = require('gulp-minify-css');
-var rev = require('gulp-rev');
+var $ = require('gulp-load-plugins')();
 var del = require('del');
 
 gulp.task('copy', function() {
@@ -28,17 +23,17 @@ gulp.task('copyFont', function() {
 });
 
 gulp.task('clean', function() {
-  return del(['build/*/*/*', 'build/*/*', 'build/*']);
+  return del.sync(['build/**']);
 });
 
 gulp.task('usemin', ['clean', 'copy', 'copyMdl', 'copyLocales', 'copyFont'], function() {
   return gulp.src('*.html')
-    .pipe(usemin({
-      css: [ minifyCss, rev ],
-      html: [ function () {return minifyHtml({ empty: true });} ],
-      js: [ uglify, rev ],
-      inlinejs: [ uglify ],
-      inlinecss: [ minifyCss, 'concat' ]
+    .pipe($.usemin({
+      css: [ $.minifyCss, $.rev ],
+      html: [ $.minifyHtml({ empty: true }) ],
+      js: [ $.uglify, $.rev ],
+      inlinejs: [ $.uglify ],
+      inlinecss: [ $.minifyCss, 'concat' ]
     }))
     .pipe(gulp.dest('build/'));
 });
