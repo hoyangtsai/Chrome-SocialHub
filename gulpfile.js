@@ -34,7 +34,7 @@ gulp.task('usemin', function() {
 gulp.task('zip', function() {
   return gulp.src('build/*')
       .pipe($.zip('build.zip'))
-      .pipe(gulp.dest('build/'));
+      .pipe(gulp.dest('.'));
 });
 
 gulp.task('publish', function() {
